@@ -1,0 +1,12 @@
+# This file is used for production.
+version: '3.8'
+
+services:
+  webapp:
+    container_name: net6-api
+    build:
+      context: ../
+    image: enrico23/net6api
+    ports:
+      - "8000:80"
+   

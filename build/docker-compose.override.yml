@@ -1,0 +1,15 @@
+# This file is used for local development, it overrides values in the docker-compose.yml.
+version: "3.8"
+services:
+  webapp:
+    image: enrico23/net6api
+    ports:
+      - "8000:80"
+      - "8001:443"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+;http://+;
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=${APP_SSL_CERTIFICATE_PASSWORD:?err}
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/certificate.pfx
+    volumes:
+      - "${USERPROFILE}/.aspnet/https:/https:ro"
